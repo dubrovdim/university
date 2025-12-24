@@ -1,0 +1,11 @@
+# Game Level Configuration
+width=800
+height=600
+background=Space_Nebula_Dark
+
+# Objects list
+object=Hero_Ship
+object=Alien_Invader_Type1
+object=Alien_Invader_Type2
+object=Asteroid_Big
+object=PowerUp_Laser

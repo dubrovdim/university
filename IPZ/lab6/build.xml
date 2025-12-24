@@ -1,0 +1,53 @@
+<project name="PracticalWork6_All" default="run-task2" basedir=".">
+
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="doc" location="doc"/>
+    
+    <property name="main.class.task1" value="work6.Main"/>
+    <property name="main.class.task2" value="work6_1.Main"/>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${doc}"/>
+    </target>
+
+    <target name="compile" depends="init" description="Компіляція всіх завдань">
+        <javac srcdir="${src}" destdir="${build}" includeantruntime="false" encoding="UTF-8"/>
+        <copy todir="${build}">
+            <fileset dir="${src}">
+                <include name="**/*.txt"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="doc" depends="init" description="Генерація документації">
+        <javadoc sourcepath="${src}" destdir="${doc}" author="true" version="true" use="true" windowtitle="Practical Work 6 Docs" encoding="UTF-8" charset="UTF-8">
+        </javadoc>
+    </target>
+
+    <target name="jar" depends="compile" description="Створення спільного JAR">
+        <jar jarfile="${dist}/PracticalWork6.jar" basedir="${build}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class.task2}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run-task1" depends="compile" description="Запуск завдання 1">
+        <java classname="${main.class.task1}" classpath="${build}" fork="true"/>
+    </target>
+
+    <target name="run-task2" depends="compile" description="Запуск завдання 2">
+        <java classname="${main.class.task2}" classpath="${build}" fork="true"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${doc}"/>
+    </target>
+</project>
