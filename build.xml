@@ -1,0 +1,51 @@
+<project name="Work5_Combined" default="run-all" basedir=".">
+    
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="doc.dir" value="docs"/>
+
+    <property name="main-class-task1" value="work5.Main"/>
+    <property name="main-class-task2" value="work5task2.Main"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${doc.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="${doc.dir}"/>
+        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" author="true" version="true">
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            </fileset>
+        </javadoc>
+        <echo message="Javadoc generated in ${doc.dir}"/>
+    </target>
+
+    <target name="run-task1" depends="compile">
+        <echo message="--------------------------------"/>
+        <echo message="Running Task 1 (Visitor Pattern)"/>
+        <echo message="--------------------------------"/>
+        <java classname="${main-class-task1}" classpath="${classes.dir}" fork="true"/>
+    </target>
+
+    <target name="run-task2" depends="compile">
+        <echo message="------------------------------------"/>
+        <echo message="Running Task 2 (Interpreter Pattern)"/>
+        <echo message="------------------------------------"/>
+        <java classname="${main-class-task2}" classpath="${classes.dir}" fork="true"/>
+    </target>
+
+    <target name="run-all" depends="run-task1, run-task2">
+        <echo message="All tasks finished."/>
+    </target>
+
+</project>
