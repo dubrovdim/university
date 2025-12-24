@@ -1,0 +1,4 @@
+C:/Users/Dmytro/Desktop/linux курсова/task2/build/CMakeFiles/calculator.dir
+C:/Users/Dmytro/Desktop/linux курсова/task2/build/CMakeFiles/calc_app.dir
+C:/Users/Dmytro/Desktop/linux курсова/task2/build/CMakeFiles/edit_cache.dir
+C:/Users/Dmytro/Desktop/linux курсова/task2/build/CMakeFiles/rebuild_cache.dir
