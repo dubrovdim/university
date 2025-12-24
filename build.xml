@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Practical3" default="run-task1" basedir=".">
+  <!-- ===== properties ===== -->
+  <property name="src.dir" value="src"/>
+  <property name="out.dir" value="out"/>
+  <property name="main.class.task1" value="task1.Main"/>
+  <property name="main.class.task2" value="task2.Main"/>
+
+  <!-- ===== tasks ===== -->
+  <target name="clean">
+    <delete dir="${out.dir}"/>
+    <delete dir="docs/javadoc"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${out.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${out.dir}" includeantruntime="false"/>
+  </target>
+
+  <target name="run-task1" depends="compile">
+    <java classname="${main.class.task1}" fork="true">
+      <classpath>
+        <pathelement path="${out.dir}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="run-task2" depends="compile">
+    <java classname="${main.class.task2}" fork="true">
+      <classpath>
+        <pathelement path="${out.dir}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="javadoc">
+  <mkdir dir="docs/javadoc"/>
+  <javadoc
+      destdir="docs/javadoc"
+      encoding="UTF-8"
+      docencoding="UTF-8"
+      charset="UTF-8"
+      author="true"
+      version="true"
+      use="true"
+      windowtitle="Practical3 JavaDoc"
+      doctitle="Practical3 JavaDoc">
+    <fileset dir="${src.dir}">
+      <include name="**/*.java"/>
+    </fileset>
+  </javadoc>
+</target>
+</project>
